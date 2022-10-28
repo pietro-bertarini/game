@@ -35,7 +35,7 @@ using UnityEngine.UI;
 
 public class MouseController : MonoBehaviour 
 {
-    public float jetpackForce = 75.0f;
+    public float jetpackForce = 150f;
     public float forwardMovementSpeed = 3.0f;
     public Transform groundCheckTransform;
     public LayerMask groundCheckLayerMask;
@@ -119,15 +119,18 @@ public class MouseController : MonoBehaviour
         restartDialog.SetActive(true);
     }
     
-    void HitByEvilCoin(Collider2D evilCoinCollider) 
+    void HitByEvilCoin(Collider2D evilCoinCollider)
     {
-	    if (!dead) 
+
+	    if (jetpackForce > 15f)
 	    {
-		    evilCoinCollider.gameObject.GetComponent<AudioSource>().Play();
+		    jetpackForce = jetpackForce - 10f;
 	    }
-	    dead = true;
-	    animator.SetBool("dead", true);
-	    restartDialog.SetActive(true);
+
+	    if (forwardMovementSpeed > 0.75f)
+		{
+			forwardMovementSpeed = forwardMovementSpeed - 0.25f;
+		}
     }
 
     void CollectCoin(Collider2D coinCollider) 
@@ -136,6 +139,11 @@ public class MouseController : MonoBehaviour
         Destroy(coinCollider.gameObject);
         AudioSource.PlayClipAtPoint(coinCollectSound, transform.position);
         coinsLabel.text = coins.ToString();
+        forwardMovementSpeed = forwardMovementSpeed + 0.125f;
+        if (jetpackForce < 140f)
+        {
+	        jetpackForce = jetpackForce + 10f;
+        }
     }
 
     
