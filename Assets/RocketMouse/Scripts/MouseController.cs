@@ -98,6 +98,10 @@ public class MouseController : MonoBehaviour
         {
 	        CollectCoin(collider);
         } 
+       else if (collider.gameObject.CompareTag("EvilCoin")) 
+        {
+	        HitByEvilCoin(collider);
+        } 
         else 
         {
             HitByLaser(collider);
@@ -113,6 +117,17 @@ public class MouseController : MonoBehaviour
 	    dead = true;
 	    animator.SetBool("dead", true);
         restartDialog.SetActive(true);
+    }
+    
+    void HitByEvilCoin(Collider2D evilCoinCollider) 
+    {
+	    if (!dead) 
+	    {
+		    evilCoinCollider.gameObject.GetComponent<AudioSource>().Play();
+	    }
+	    dead = true;
+	    animator.SetBool("dead", true);
+	    restartDialog.SetActive(true);
     }
 
     void CollectCoin(Collider2D coinCollider) 
