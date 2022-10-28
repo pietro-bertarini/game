@@ -42,7 +42,8 @@ public class AvatarController : MonoBehaviour
     public ParticleSystem jetpack;
     public Texture2D coinIconTexture;
     public AudioClip coinCollectSound;
-    public AudioSource jetpackAudio;
+    public AudioClip painCollectSound;
+    public AudioSource jumpAudio;
     public AudioSource footstepsAudio;
     public ParallaxScroll parallax;
 
@@ -121,6 +122,7 @@ public class AvatarController : MonoBehaviour
     
     void HitByEvilCoin(Collider2D evilCoinCollider)
     {
+	    AudioSource.PlayClipAtPoint(painCollectSound, transform.position);
 
 	    if (jetpackForce > 15f)
 	    {
@@ -150,8 +152,8 @@ public class AvatarController : MonoBehaviour
     void AdjustFootstepsAndJetpackSound(bool jetpackActive) 
     {
         footstepsAudio.enabled = !dead && grounded;
-        jetpackAudio.enabled =  !dead && !grounded;
-	    jetpackAudio.volume = jetpackActive ? 1.0f : 0.5f;        
+        jumpAudio.enabled =  !dead && !grounded;
+	    jumpAudio.volume = jetpackActive ? 1.0f : 0.5f;        
     }
 
     public void RestartGame()
