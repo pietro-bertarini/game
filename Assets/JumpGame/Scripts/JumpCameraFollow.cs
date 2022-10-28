@@ -31,7 +31,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class CameraFollow : MonoBehaviour 
+public class JumpCameraFollow : MonoBehaviour 
 {
     public GameObject targetObject;
     private float distanceToTarget;
