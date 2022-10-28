@@ -64,7 +64,7 @@ public class MouseController : MonoBehaviour
     {
         bool jetpackActive = Input.GetButton("Fire1");
 	    jetpackActive = jetpackActive && !dead;
-	    if (jetpackActive) 
+	    if (jetpackActive && grounded) 
 	    { 
 	        GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jetpackForce));
 	    }
@@ -89,8 +89,7 @@ public class MouseController : MonoBehaviour
     void AdjustJetpack (bool jetpackActive) 
     {
   	    ParticleSystem.EmissionModule jpEmission = jetpack.emission;
-	    jpEmission.enabled = !grounded;
-	    jpEmission.rateOverTime = jetpackActive ? 300.0f : 75.0f; 
+	    jpEmission.enabled = false;
     }
 
     void OnTriggerEnter2D(Collider2D collider) 
