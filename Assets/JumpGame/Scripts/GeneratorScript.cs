@@ -88,7 +88,7 @@ public class GeneratorScript : MonoBehaviour
                 addRooms = false;
             }
 
-            if (roomEndX < removeRoomX) 
+            if (roomEndX * 2< removeRoomX) 
             {
                 roomsToRemove.Add(room);
             }
