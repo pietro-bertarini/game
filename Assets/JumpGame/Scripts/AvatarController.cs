@@ -33,7 +33,7 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
 
-public class MouseController : MonoBehaviour 
+public class AvatarController : MonoBehaviour 
 {
     public float jetpackForce = 150f;
     public float forwardMovementSpeed = 3.0f;
